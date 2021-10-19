@@ -36,7 +36,7 @@ SECRET_KEY = '2c23h29+-2dsq4yapuo7l+fp%r#gu3kfko=i(qh10uxdejb@lc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','https://safeplate.com']
+ALLOWED_HOSTS = ['127.0.0.1','https://django.safeplate.com']
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PAGINATION_CLASS':
