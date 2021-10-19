@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+{% load table_tags %}
+{% load static %}
+<html>
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+
+td, th {
+  border: 0px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 8.33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  {#overflow-x: hidden;#}
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+    font-size: 12px;
+  padding-right: 7px;
+}
+.dropdown-container {
+  display: none;
+  background-color: #ffffff;
+  padding-left: 20px;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidebar.collapsed {
+    max-width: 50px;
+    overflow: hidden;
+}
+
+.main.collapsed {
+    margin-left: 50px;
+    overflow: hidden;
+}
+.text {
+      display: inline;
+      margin: 0;
+}
+
+.content { display: block; }
+
+#gradient{
+ {#height: 200px;#}
+  background-color: blue; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right,#394EEE  70%, #77219A 100%);
+
+}
+
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #2A2E4A;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+    text-align: left;
+}
+
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.fa-tachometer{
+     color: #A6A2AD;
+    font-size: 18px;
+    margin-Right: 10px;
+}
+
+.fa-comment-o
+{
+     color: #A6A2AD;
+    font-size: 18px;
+    margin-Right: 10px;
+
+}
+.fa-envelope-o
+{
+     color: #A6A2AD;
+     font-size: 18px;
+    margin-Right: 10px;
+
+}
+
+.fa-sitemap
+{
+     color: #FFFFFF;
+ font-size: 18px;
+    margin-Right: 10px;
+
+}
+
+.fa-table
+{
+     color: #A6A2AD;
+   font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-credit-card
+{
+     color: #A6A2AD;
+     font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-hdd-o
+{
+     color: #A6A2AD;
+     font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-wpforms
+{
+     color: #A6A2AD;
+  font-size: 18px;
+    margin-Right: 10px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+
+
+
+</style>
+</head>
+<body style="background-color:whitesmoke;">
+
+
+
+<div>
+<div id="mySidebar" class="sidebar">
+{#  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> ×</a>#}
+    <div style="text-align:center; margin-top: 0px">
+    <img id="myapp" src="{% static 'myapp/kk.png' %} " width=120px alt="My image"></div>
+    <a  href="#" style="color:#000000; font-size:12px; margin-top: 20px" >
+        <i id="tachometer" class="fa fa-tachometer"></i>
+        <p style="color:#A6A2AD" class="text">DashBoard</p></a>
+  <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;  ">
+      <i id="comment" class="fa fa-comment-o"></i>
+      <i class="fa fa-caret-down text"></i>
+      <p style="color:#A6A2AD" class="text">Partners</p></a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addpartners' 1 %}"> ...  Add Partners</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewpartner' %}"> ...  View Partners</a>
+
+  </div>
+  <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+      <i id="envelope" class="fa fa-envelope-o"></i>
+      <i class="fa fa-caret-down text"></i>
+     <p style="color:#A6A2AD" class="text">Safe Plate</p> </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Order Forms</a>
+
+  </div>
+{#  <a href="#">Partners</a>#}
+{#    <a class="dropdown-btn">Dropdown#}
+{#    <i class="fa fa-caret-down"></i>#}
+{#  </a>#}
+{#  <div class="dropdown-container">#}
+{#    <a href="#">Link 1</a>#}
+{#    <a href="#">Link 2</a>#}
+{#    <a href="#">Link 3</a>#}
+{#  </div>#}
+    <a id="sitemap1" class="dropdown-btn gradient" href="#" style="color:#000000; border-radius: 25px; background-color:#2D42D5; margin-left: 10px; margin-right: 10px;font-size:12px;">
+        <i id="sitemap" class="fa fa-sitemap"></i>
+        <i class="fa fa-caret-down text"></i>
+        <p style="color:#FFFFFF" class="text">Merchant</p>  </a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addmerchant' 1 %}"> ...  Add Merchant</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewmerchant' %}"> ...  View Merchant</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Order Status</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Delivery Status</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="table" class="fa fa-table"></i>
+        <i class="fa fa-caret-down text"></i>
+        <p style="color:#A6A2AD" class="text">Manufacture</p></a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addmanufacturer' 1 %}"> ...  Add Manufacturer</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewmanufacture' %}"> ...  View Manufacturer</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Inventory</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="creditcard" class="fa fa-credit-card"></i>
+        <i class="fa fa-caret-down text"></i>
+       <p style="color:#A6A2AD" class="text">System Tickets</p> </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="hdd" class="fa fa-hdd-o"></i>
+        <i class="fa fa-caret-down text"></i>
+      <p style="color:#A6A2AD" class="text">Complaints</p>  </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="wpforms" class="fa fa-wpforms"></i>
+        <i class="fa fa-caret-down text"></i>
+       <p style="color:#A6A2AD" class="text">APIs</p> </a>
+<div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Partners</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Merchants</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Delivery</a>
+ </div>
+
+</div>
+
+{#<div style="margin-Left: 350px">#}
+{##}
+{#    <button onclick="document.getElementsByClassName('sidebar')[0].classList.toggle('collapsed'); openNav()" id="togglebutton" class="openbtn" style="margin-Left: 10px; width: 100% ">☰ Open Sidebar</button>#}
+{##}
+{#</div>#}
+
+    </div>
+
+
+<div class="container">
+{#  <h2>Modal Login Example</h2>#}
+  <!-- Trigger the modal with a button -->
+{#  <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button>#}
+
+  <!-- Modal -->
+  <div  class="modal" id="myModal" role="dialog">
+    <div style="width: 10%; margin-top: 60px; margin-right: 20px" class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body" style="padding:20px 20px;">
+          <form role="form">
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="usrname"><span class="glyphicon glyphicon-user"></span> Profile</label>
+{#              <input type="text" class="form-control" id="usrname" placeholder="Enter email">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw"><i class="fa fa-google-wallet " ></i> My Wallet</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw1"><i class="fa fa-cog" aria-hidden="true"></i> Settings</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw2"><i class="fa fa-lock" aria-hidden="true"></i> Logout</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+     <div  id="main" class="ss" style="margin-Left: 280px">
+{#    {% if text == True %}#}
+<div style="margin-top: -15px" class="openbtn">
+  <button onclick="document.getElementsByClassName('sidebar')[0].classList.toggle('collapsed'); openNav()" id="togglebutton" class="openbtn" style="margin-Left: 10px;">☰ </button>
+{#  <button class="openbtn"> <i class="far fa-expand" aria-hidden="true"></i></button>#}
+    <button class="openbtn"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></button>
+    <button class="openbtn"><i class="fa fa-window-maximize"></i></button>
+    <img id="myBtn" style="float:right" src="{% static 'myapp/male.png' %}" width=50px alt="My image">
+ <button style="float:right" class="openbtn"><i class="fa fa-bell-o" aria-hidden="true"></i></button>
+ <button style="float:right" class="openbtn"> <i class="fa fa-search" aria-hidden="true"></i></button>
+
+</div>
+
+
+     <div style='overflow:hidden'>
+    <div style="float:left; color: #3D4072; font-size: 25px; margin-left: 40px; margin-top: 20px">View merchant</div>
+    <div style="float:left;  color:#3D4072;font-size: 15px; margin-left: 20px; margin-top: 30px">Merchant - View Merchant</div>
+</div>
+
+   <div style="clear:both; text-align:center; margin-top: 40px; border-radius: 12px; background-color: #ffffff; height:100%; margin-Left: 20px" class="bg-img">
+{#<div class="container">#}
+{# <p style="float:left; padding-Top:10px; font-weight:bold">Add Partner Details</p><br><br>#}
+{##}
+{#  <h2>HTML Table</h2>#}
+<p style="float:left;margin-left: 10px; padding-Top:10px; font-weight:bold">View Merchant Details</p><br><br>
+
+
+{#</div>#}
+
+         <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+               <th>Id</th>
+    <th>Place Order Id</th>
+    <th>Offer Id</th>
+    <th>Type of Package</th>
+    <th>Quantity</th>
+    <th>Item Price</th>
+    <th>Comment</th>
+    <th>Merchant Name</th>
+    <th>Email Id</th>
+    <th>Phone Number</th>
+    <th>Address</th>
+    <th>Billing Type</th>
+                <th> </th>
+            </tr>
+        </thead>
+       <tbody>
+       {% for result in data%}
+           <tr>
+{#               <td> {{ result.id }}</td>#}
+                <td> {{ result.id1 }}</td>
+                <td> {{ result.placeorderid }}</td>
+                <td> {{ result.offerid }}</td>
+                <td> {{ result.typeofpackage }}</td>
+                <td> {{ result.quantity }}</td>
+                <td> {{ result.itemprice }}</td>
+                <td> {{ result.comment }}</td>
+                <td> {{ result.merchantname }}</td>
+                <td> {{ result.emailid }}</td>
+                <td> {{ result.phonenumber }}</td>
+                <td> {{ result.address }}</td>
+                <td> {{ result.billingtype }}</td>
+
+           <td><a href="editmerchant/{{ result.id }}" >Edit   </a></td>
+{#           <td> {{ result.status }}</td>#}
+           </tr>
+           {%  endfor %}
+       </tbody>
+{#        <tfoot>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Address</th>#}
+{#                <th>Salary</th>#}
+{#                <th>Status</th>#}
+{#            </tr>#}
+{#        </tfoot>#}
+    </table>
+    </div>
+</div>
+
+
+
+
+
+
+</div>
+
+<script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script>
+<script type="text/javascript">
+    var opts = {};
+    var datatable = datatableview.initialize($('.datatable'), opts);
+    var table = datatable.api;
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+} );
+</script>
+
+<script>
+
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+var element = document.getElementById("main");
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+        if ( element.style.marginLeft==="280px" ) {
+     dropdownContent.style.display = "block";
+ }
+ else
+     {
+      dropdownContent.style.display = "none";
+     }
+
+  }
+  });
+}
+
+$(document).ready(function(){
+  $("#myBtn").click(function(){
+    $("#myModal").modal();
+  });
+});
+
+
+function openNav() {
+  {#document.getElementById("mySidebar").style.width = "250px";#}
+  {#document.getElementById("main").style.marginLeft = "250px";#}
+  {#text = True;#}
+
+    var element = document.getElementById("main");
+
+
+     var tachometer = document.getElementById("tachometer");
+    var comment = document.getElementById("comment");
+    var envelope = document.getElementById("envelope");
+    var sitemap = document.getElementById("sitemap");
+    var table = document.getElementById("table");
+    var creditcard = document.getElementById("creditcard");
+    var hdd = document.getElementById("hdd");
+    var wpforms = document.getElementById("wpforms");
+    var myapp = document.getElementById("myapp");
+
+var sitemap1 = document.getElementById("sitemap1");
+
+    if ( element.style.marginLeft==="280px" ) {
+         sitemap1.style.marginLeft = "0px";
+        sitemap1.style.marginRight = "0px";
+
+         tachometer.style.marginLeft = "-15px";
+        comment.style.marginLeft = "-15px";
+        envelope.style.marginLeft = "-15px";
+        sitemap.style.marginLeft = "-15px";
+        table.style.marginLeft = "-15px";
+        creditcard.style.marginLeft = "-15px";
+        hdd.style.marginLeft = "-15px";
+        wpforms.style.marginLeft = "-15px";
+        element.style.marginLeft="50px";
+
+         myapp.style.width = "40px";
+        myapp.style.height = "80px";
+
+
+} else {
+          sitemap1.style.marginLeft = "10px";
+        sitemap1.style.marginRight = "10px";
+
+         tachometer.style.marginLeft = "0px";
+        comment.style.marginLeft = "0px";
+        envelope.style.marginLeft = "0px";
+        sitemap.style.marginLeft = "0px";
+        table.style.marginLeft = "0px";
+        creditcard.style.marginLeft = "0px";
+        hdd.style.marginLeft = "0px";
+        wpforms.style.marginLeft = "0px";
+        element.style.marginLeft="280px";
+       myapp.style.width = "120px";
+
+}
+{#var element2 =document.getElementsByClassName("ab");#}
+{#     var element1 = document.getElementById("table");#}
+{#      var td = element1.rows[0].cells[0];#}
+{#    td.width = '500px';#}
+     {#element1.style.width = "300px";#}
+
+
+    var txt = "Width including padding and border: " + element1.offsetWidth + "px";
+document.getElementById("mydiv").innerHTML = txt;
+
+    if (element1.offsetWidth < 20)
+    {
+        element1.offsetWidth = 300
+        {#element1.style.width = "100%"#}
+        tachometer.style.marginLeft = "-15px";
+        comment.style.marginLeft = "-15px";
+        envelope.style.marginLeft = "-15px";
+        sitemap.style.marginLeft = "-15px";
+        table.style.marginLeft = "-15px";
+        creditcard.style.marginLeft = "-15px";
+        hdd.style.marginLeft = "-15px";
+        wpforms.style.marginLeft = "-15px";
+        myapp.style.width = "40px";
+        myapp.style.height = "80px";
+        {#element1.style.marginLeft="-30px";#}
+} else {
+        element1.style.width = "80%"
+         tachometer.style.marginLeft = "0px";
+        comment.style.marginLeft = "0px";
+        envelope.style.marginLeft = "0px";
+        sitemap.style.marginLeft = "0px";
+        table.style.marginLeft = "0px";
+        creditcard.style.marginLeft = "0px";
+        hdd.style.marginLeft = "0px";
+        wpforms.style.marginLeft = "0px";
+        myapp.style.width = "120px";
+
+        {#element1.style.marginLeft="0px";#}
+}
+
+     var element2 = document.getElementById("myDIV1");
+
+    if (element2.className === "col-xs-5") {
+    element2.className = "col-xs-6"
+
+        {#element2.style.marginLeft="-30px";#}
+} else {
+   element2.className = "col-xs-5"
+
+        {#element2.style.marginLeft="0px";#}
+}
+
+    var element3 = document.getElementById("myDIV2");
+{#var txt = "Width including padding and border: " + element3.offsetWidth + "px";#}
+{#document.getElementById("myDIV4").innerHTML = txt;#}
+    if (element3.offsetWidth < 340) {
+
+    element3.className = "col-xs-9"
+        element3.style.width="33.2%";
+     var txt = "Width including padding and border: " + element3.offsetWidth + "px";
+    {#document.getElementById("myDIV4").innerHTML = txt;#}
+} else {
+        {#document.getElementById("myDIV4").innerHTML = "kk";#}
+   element3.className = "col-xs-6"
+         element3.style.width="27.9%";
+        {#element2.style.marginLeft="0px";#}
+}
+
+
+     var element4 = document.getElementById("myDIV3");
+ var txt = "Width including padding and border: " + element4.offsetWidth + "px";
+{#document.getElementById("myDIV3").innerHTML = txt;#}
+    if (element4.offsetWidth < 340) {
+{#document.getElementById("myDIV4").innerHTML = txt;#}
+    element4.className = "col-xs-9"
+        element4.style.width="33.2%";
+} else {
+        {#document.getElementById("myDIV4").innerHTML = "kk";#}
+   element4.className = "col-xs-6"
+         element4.style.width="27.9%";
+        {#element2.style.marginLeft="0px";#}
+}
+
+     var element5 = document.getElementById("myDIV4");
+ var txt = "Width including padding and border: " + element3.offsetWidth + "px";
+
+    if (element5.offsetWidth < 340) {
+
+    element5.className = "col-xs-9"
+        element5.style.width="33.2%";
+} else {
+
+   element5.className = "col-xs-6"
+         element5.style.width="27.9%";
+
+}
+
+     var element6 = document.getElementById("myDIV5");
+ var txt = "Width including padding and border: " + element3.offsetWidth + "px";
+
+    if (element6.offsetWidth < 340) {
+
+    element6.className = "col-xs-9"
+        element6.style.width="33.2%";
+} else {
+
+   element6.className = "col-xs-6"
+         element6.style.width="27.9%";
+
+}
+
+
+     var element7 = document.getElementById("myDIV6");
+ var txt = "Width including padding and border: " + element3.offsetWidth + "px";
+
+    if (element7.offsetWidth < 340) {
+
+    element7.className = "col-xs-9"
+        element7.style.width="33.2%";
+} else {
+
+   element7.className = "col-xs-6"
+         element7.style.width="27.9%";
+
+}
+
+      var element8 = document.getElementById("myDIV7");
+ var txt = "Width including padding and border: " + element3.offsetWidth + "px";
+
+    if (element8.offsetWidth < 340) {
+
+    element8.className = "col-xs-9"
+        element8.style.width="33.2%";
+} else {
+
+   element7.className = "col-xs-6"
+         element8.style.width="27.9%";
+
+}
+
+
+     var element9 = document.getElementById("myDIV8");
+
+    if (element9.className === "col-xs-5") {
+    element9.className = "col-xs-6"
+        {#element1.style.marginLeft="-30px";#}
+} else {
+   element9.className = "col-xs-5"
+        {#element1.style.marginLeft="0px";#}
+}
+
+     var element10 = document.getElementById("myDIV9");
+
+    if (element10.className === "col-xs-5") {
+    element10.className = "col-xs-6"
+        {#element1.style.marginLeft="-30px";#}
+} else {
+   element10.className = "col-xs-5"
+        {#element1.style.marginLeft="0px";#}
+}
+
+
+     var element11 = document.getElementById("myDIV10");
+
+    if (element11.className === "col-xs-5") {
+    element11.className = "col-xs-6"
+        {#element1.style.marginLeft="-30px";#}
+} else {
+   element11.className = "col-xs-5"
+        {#element1.style.marginLeft="0px";#}
+}
+     var element12 = document.getElementById("myDIV11");
+     if (element12.className === "col-xs-5") {
+    element12.className = "col-xs-6"
+        {#element1.style.marginLeft="-30px";#}
+} else {
+   element12.className = "col-xs-5"
+        {#element1.style.marginLeft="0px";#}
+}
+
+     var element13 = document.getElementById("myDIV12");
+
+
+    if (element13.className === "col-xs-5") {
+    element13.className = "col-xs-6"
+
+        {#element1.style.marginLeft="-30px";#}
+} else {
+   element13.className = "col-xs-5"
+
+        {#element1.style.marginLeft="0px";#}
+}
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  text = False;
+}
+
+$(document).ready(function(){
+
+ $("#togglebutton").click(function(){
+
+
+          var drp  = document.getElementsByClassName("dropdown-btn");
+
+var i;
+
+for (i = 0; i < drp.length; i++) {
+   var drps = drp[i].nextElementSibling;
+
+    {#let current = document.querySelector('.dropdown-btn');#}
+    {#var dropdownContent = current.nextElementSibling;#}
+
+    console.log(drps);
+if (drps.style.display === "block") {
+    drps.style.display = "none";
+}}
+     {#$('#gg').toggle(closeNav, openNav);#}
+   {#$("#myDIV").animate({width: "10%"});#}
+   {#$( "#main" ).toggleClass( "ss", 1000 );#}
+{#$(".sidebar").toggle("slide");#}
+{#     var toggleWidth = $("#myDIV").width() === 150 ? "100px" : "50px";#}
+{#        $('#myDIV').animate({ width: toggleWidth });#}
+
+ });
+
+});
+
+
+
+   $('#togglebutton').click(function() {
+   if ($(window).width() > 500) { //your chosen mobile res
+     $('.text').toggle(300);
+
+   } else {
+
+   }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+{#    {% load staticfiles %}#}
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>#}
+</head>
+<body>
+<center>
+
+    <h3>
+       Update merchant
+    </h3>
+    <br/>
+    <form method="POST" action="/updatemanufacturer/{{manufacturer.id}}">
+        {% csrf_token %}
+    <table border="1">
+    <tr>
+            <td>Manufacturer id</td>
+            <td>
+               <input type="text" name="id" value="{{ manufacturer.id }}" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td>Manufacturer id1</td>
+            <td>
+               <input type="text" name="id1" value="{{ manufacturer.id1 }}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Name
+            </td>
+            <td>
+               <input type="text" name="name" value="{{ manufacturer.name }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Email Id
+            </td>
+            <td>
+               <input type="text" name="emailid" value="{{ manufacturer.emailid }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Phone no
+            </td>
+            <td>
+               <input type="text" name="phoneno" value="{{ manufacturer.phoneno }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Address
+            </td>
+            <td>
+               <input type="text" name="address" value="{{ manufacturer.address }}"/>
+            </td>
+
+        </tr>
+  <tr>
+            <td>
+                Passcode
+            </td>
+            <td>
+               <input type="text" name="passcode" value="{{ manufacturer.passcode }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Billing Type
+            </td>
+            <td>
+               <input type="text" name="billingtype" value="{{ manufacturer.billingtype }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+              Materail Type
+            </td>
+            <td>
+               <input type="text" name="materialtype" value="{{ manufacturer.materialtype }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Addons Type
+            </td>
+            <td>
+               <input type="text" name="addonstype" value="{{ manufacturer.addonstype }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Addons number
+            </td>
+            <td>
+               <input type="text" name="addonsnumber" value="{{ manufacturer.addonsnumber }}"/>
+            </td>
+
+        </tr>
+
+
+<tr>
+               <td>
+                   <Input type = "submit" value="Update Record"/>
+               <td>
+               {% if messages %}
+               {% for mess in messages %}
+               <b style="'color: green;"> {{mess}}</b>
+               {% endfor %}
+
+               {% endif %}
+
+           </td>
+               </td>
+           </tr>
+
+    </table>
+        </form>
+</center>
+
+</body>
+</html>

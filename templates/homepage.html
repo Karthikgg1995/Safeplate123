@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>
+        crud opeartions
+    </title>
+</head>
+   <body>
+   <center>
+       <h1>how to create crud</h1>
+       <h3>django web</h3>
+   <a href="{% url 'Insertemp' %}"> Create new employee</a>
+       <table border="1">
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>address</th>
+    <th>salary</th>
+    <th>status</th>
+  </tr>
+
+           {% for result in data%}
+           <tr>
+               <td> {{ result.id }}</td>
+           <td> {{ result.name }}</td>
+           <td> {{ result.address }}</td>
+           <td> {{ result.salary }}</td>
+           <td> {{ result.status }}</td>
+           </tr>
+           {%  endfor %}
+           </table>
+
+   </center>
+{#      Hello World!!!<p>Today is {{today}}</p>#}
+   </body>
+
+</html>

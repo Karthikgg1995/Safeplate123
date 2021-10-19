@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("imgnature.jpg");
+ background-color:#0E1763;
+ height:100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+ .btn {
+  position: absolute;
+  bottom: -20px;
+  left: 150px;
+  width: 120px;
+     height: 50px;
+  background: #0066ff;
+  border: none;
+  outline: none;
+  border-radius: 10%;
+  padding: 8px 4px;
+  color: white;
+}
+
+ .alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+.container {
+  /* The image used */
+
+ background-color:white;
+text-align:center;
+      width: 400px;
+    height: 350px;
+
+  {#max-width: 300px;#}
+ display:inline-block;
+ vertical-align:middle;
+  top: 100px;
+    border-radius: 10px;
+
+
+  /* Center and scale the
+  image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+/*.container {
+
+  right: 0;
+  margin: 20px;
+  max-width: 300px;
+  padding: 16px;
+  background-position: center;
+  background-color: white;
+  text-align: center;
+  position: relative;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=email], input[type=password] {
+  width: 80%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<div style="text-align:center; background-color: #232f3e;" class="bg-img">
+  <form  class="container" action="Login" method="GET">
+    <img style="margin-top: 30px" src="{% static 'myapp/kk.png' %} " width=120px alt="My image">
+<div class="form-group">
+    <input type="text" placeholder="Username" name="email" height="35" required>
+</div>
+<div class="form-group">
+    <input type="password" placeholder="Password" name="pass" height="35" required>
+</div>
+      <div id="textbox">
+  <p class="alignleft" style="color:#0066ff; margin-left: 10px">Remember Me</p>
+  <p class="alignright" style="color:#0066ff; margin-Right: 10px">Forgot Password</p>
+</div>
+{#       <div class="form-group d-md-flex">#}
+{#	            	<div style="text-align:left; margin-left: 30px">#}
+{#	            		<label class="checkbox-wrap checkbox-primary">Remember Me#}
+{#									  <input type="checkbox" checked="">#}
+{#									  <span class="checkmark"></span>#}
+{#									</label>#}
+{#                        <a href="#">Remember Me</a>#}
+{#								</div>#}
+{#								<div style="float:right;">#}
+{##}
+{#									<a href="#">Forgot Password</a>#}
+{#								</div>#}
+{#	            </div>#}
+
+
+{#</p>#}
+    <button onclick="location.href = '/main'" type="submit" class="btn">Login</button><br><br>
+
+
+  </form>
+</div>
+{#<div style="text-align:center;" class="bg-img">#}
+{#  <form  class="container" action="Login" method="GET">#}
+{#    <h1>Login</h1>#}
+{##}
+{##}
+{#    <input type="email" placeholder="Enter Email" name="email" required>#}
+{##}
+{##}
+{#    <input type="password" placeholder="Enter Password" name="pass" required>#}
+{##}
+{#    <button type="submit" class="btn">Login</button><br><br>#}
+{##}
+{#     <a style="color:blue;  padding: 35px 10px;"   href='Registration.jsp'>New User?Please register</a><br><br>#}
+{#      <a style="color:blue" padding: 35px 10px; href='Forgotpasssword.jsp'>Forgot Password</a><br><br>#}
+{#  </form>#}
+{#</div>#}
+
+
+
+</body>
+</html>

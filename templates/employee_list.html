@@ -1,0 +1,67 @@
+{% load table_tags %}
+{% load static %}
+<!-- myapp/mymodel_list.html -->
+<html>
+<head>
+<!-- Load dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th> </th>
+            </tr>
+        </thead>
+       <tbody>
+       {% for result in data%}
+           <tr>
+{#               <td> {{ result.id }}</td>#}
+           <td> {{ result.name }}</td>
+           <td> {{ result.address }}</td>
+           <td> {{ result.salary }}</td>
+           <td> {{ result.status }}</td>
+           <td><a href="Edit/{{ result.id }}" >Edit   </a></td>
+{#           <td> {{ result.status }}</td>#}
+           </tr>
+           {%  endfor %}
+       </tbody>
+{#        <tfoot>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Address</th>#}
+{#                <th>Salary</th>#}
+{#                <th>Status</th>#}
+{#            </tr>#}
+{#        </tfoot>#}
+    </table>
+<!-- Load js for initializing tables via their server-side options -->
+<script type="text/javascript" charset="utf8" src="{% static 'js/datatableview.js' %}"></script>
+<script type="text/javascript">
+    var opts = {};
+    var datatable = datatableview.initialize($('.datatable'), opts);
+    var table = datatable.api;
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+} );
+</script>
+</body>
+</html>
+<!-- Render the table skeleton, includes the .datatable class for the on-ready initializer. -->
+{{ datatable }}
+{#<div class="container" style="margin-top: 10px">#}
+{#            <h1>people</h1>#}
+{#            <br />#}
+{#            {% render_table student_show %}#}
+{#        </div>#}

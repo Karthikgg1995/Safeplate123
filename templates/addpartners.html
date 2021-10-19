@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/css/intlTelInput.css" rel="stylesheet" media="screen">
+      <link rel="stylesheet" href="css/intlTelInput/intlTelInput.css">
+  <link rel="stylesheet" href="css/intlTelInput//demo.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="js/intlTelInput/intlTelInput.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script  src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
+
+
+<style>
+
+    /* Popup box BEGIN */
+.hover_bkgr_fricc{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+
+.hover_bkgr_fricc.helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.hover_bkgr_fricc > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+
+
+    .hover_bkgr_fricc1{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+
+
+    .hover_bkgr_fricc1.helper{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.hover_bkgr_fricc1 > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+.trigger_popup_fricc {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+/* Popup box BEGIN */
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  {#overflow-x: hidden;#}
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+    font-size: 12px;
+  padding-right: 7px;
+}
+.dropdown-container {
+  display: none;
+  background-color: #ffffff;
+  padding-left: 20px;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.sidebar.collapsed {
+    max-width: 50px;
+    overflow: hidden;
+}
+
+.main.collapsed {
+    margin-left: 50px;
+    overflow: hidden;
+}
+.text {
+      display: inline;
+      margin: 0;
+}
+
+.content { display: block; }
+
+
+#gradient
+{
+ {#height: 200px;#}
+  background-color: blue; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right,#394EEE  70%, #77219A 100%);
+
+}
+#insert {
+
+  float: left;
+    margin-left: 20px;
+}
+
+#update{
+     float: left;
+margin-left: 40px;
+
+}
+
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #2A2E4A;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+    text-align: left;
+}
+
+.btn {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  padding: 7px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.info {
+  border-color: blue;
+  color: blue;
+}
+
+.info:hover {
+    background: blue;
+    color: white;
+}
+
+
+{#.openbtn:hover {#}
+{#  background-color: #444;#}
+{#}#}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.fa-tachometer{
+     color: #A6A2AD;
+    font-size: 18px;
+    margin-Right: 10px;
+}
+
+.fa-comment-o
+{
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-Right: 10px;
+
+}
+.fa-envelope-o
+{
+    color: #A6A2AD;
+     font-size: 18px;
+    margin-Right: 10px;
+
+}
+
+.fa-sitemap
+{
+    color: #A6A2AD;
+ font-size: 18px;
+    margin-Right: 10px;
+
+}
+
+.fa-table
+{
+    color: #A6A2AD;
+   font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-credit-card
+{
+color: #A6A2AD;
+     font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-hdd-o
+{
+    color: #A6A2AD;
+
+     font-size: 18px;
+    margin-Right: 10px;
+}
+.fa-wpforms
+{
+    color: #A6A2AD;
+
+  font-size: 18px;
+    margin-Right: 10px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+</head>
+<body style="background-color:whitesmoke;">
+{# var text;#}
+<div id="gg"></div>
+<div>
+
+<div class="container">
+{#  <h2>Modal Login Example</h2>#}
+  <!-- Trigger the modal with a button -->
+{#  <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button>#}
+
+  <!-- Modal -->
+  <div  class="modal" id="myModal" role="dialog">
+    <div style="width: 10%; margin-top: 60px; margin-right: 20px" class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body" style="padding:20px 20px;">
+          <form role="form">
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="usrname"><span class="glyphicon glyphicon-user"></span> Profile</label>
+{#              <input type="text" class="form-control" id="usrname" placeholder="Enter email">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw"><i class="fa fa-google-wallet " ></i> My Wallet</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw1"><i class="fa fa-cog" aria-hidden="true"></i> Settings</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+            <div class="form-group">
+              <label style="color: #A6A2AD; font-weight: lighter;" for="psw2"><i class="fa fa-lock" aria-hidden="true"></i> Logout</label>
+{#              <input type="text" class="form-control" id="psw" placeholder="Enter password">#}
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="mySidebar" class="sidebar">
+{#  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> ×</a>#}
+    <div style="text-align:center; margin-top: 0px">
+    <img id="myapp" src="{% static 'myapp/kk.png' %} " width=120px alt="My image"></div>
+    <a  href="#" style="color:#000000; font-size:12px; margin-top: 20px" >
+        <i id="tachometer" class="fa fa-tachometer"></i>
+        <p style="color:#A6A2AD" class="text">DashBoard</p></a>
+  <a id="comment1" class="dropdown-btn gradient" href="#" style="color:#000000; border-radius: 25px; background-color:#2D42D5; margin-left: 10px; margin-right: 10px; font-size:12px;">
+      <i id="comment" class="fa fa-comment-o"></i>
+      <i class="fa fa-caret-down text"></i>
+      <p style="color:#FFFFFF" class="text">Partners</p></a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addpartners' 1 %}"> ...  Add Partners</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewpartner' %}"> ...  View Partners</a>
+
+  </div>
+  <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+      <i id="envelope" class="fa fa-envelope-o"></i>
+      <i class="fa fa-caret-down text"></i>
+     <p style="color:#A6A2AD" class="text">Safe Plate</p> </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Order Forms</a>
+
+  </div>
+{#  <a href="#">Partners</a>#}
+{#    <a class="dropdown-btn">Dropdown#}
+{#    <i class="fa fa-caret-down"></i>#}
+{#  </a>#}
+{#  <div class="dropdown-container">#}
+{#    <a href="#">Link 1</a>#}
+{#    <a href="#">Link 2</a>#}
+{#    <a href="#">Link 3</a>#}
+{#  </div>#}
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="sitemap" class="fa fa-sitemap"></i>
+        <i class="fa fa-caret-down text"></i>
+        <p style="color:#A6A2AD" class="text">Merchant</p>  </a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addmerchant' 1 %}"> ...  Add Merchant</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewmerchant' %}"> ...  View Merchant</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Order Status</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Delivery Status</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="table" class="fa fa-table"></i>
+        <i class="fa fa-caret-down text"></i>
+        <p style="color:#A6A2AD" class="text">Manufacture</p></a>
+     <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'addmanufacturer' 1 %}"> ...  Add Manufacturer</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="{% url 'viewmanufacture' %}"> ...  View Manufacturer</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Inventory</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="creditcard" class="fa fa-credit-card"></i>
+        <i class="fa fa-caret-down text"></i>
+       <p style="color:#A6A2AD" class="text">System Tickets</p> </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="hdd" class="fa fa-hdd-o"></i>
+        <i class="fa fa-caret-down text"></i>
+      <p style="color:#A6A2AD" class="text">Complaints</p>  </a>
+    <div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;">
+        <i id="wpforms" class="fa fa-wpforms"></i>
+        <i class="fa fa-caret-down text"></i>
+       <p style="color:#A6A2AD" class="text">APIs</p> </a>
+<div class="dropdown-container">
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Partners</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Merchants</a>
+    <a style="color:#A6A2AD; font-size:10px;" href="#"> ...  Delivery</a>
+ </div>
+
+</div>
+
+<div style="margin-Top:25px" class="hover_bkgr_fricc">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">&times;</div>
+        <p>Inserted successfully to the database</p>
+    </div>
+</div>
+
+<div style="margin-Top:25px" class="hover_bkgr_fricc1">
+    <span class="helper"></span>
+    <div>
+        <div class="popupCloseButton">&times;</div>
+        <p>Updated successfully to the database</p>
+    </div>
+</div>
+{#<div  id="main">#}
+{#    {% if text == True %}#}
+{#  <button class="openbtn" style="margin-Left: 10px; width: 100%"  onclick="openNav(); ">☰ Open Sidebar</button>#}
+{#        {% else %}#}
+{#        <button class="openbtn" style="margin-Left: 120px"  onclick="closeNav(); ">☰ Close Sidebar</button>#}
+{#     {% endif %}#}
+{#    <div style="text-align:center; border-radius: 12px; background-color: #ffffff; height:100%" class="bg-img">#}
+{##}
+{#<div style='float:left'>#}
+{#   <form action="/action_page.php">#}
+{#  <label for="id">Id :</label><br>#}
+{#  <input  style="margin-left:20px; border-style: solid; border-width: thin;border-radius: 12px" type="text" id="id" name="id"><br>#}
+{#  <label for="offerid">Offer Id :</label><br>#}
+{#  <input style="margin-left:20px; border-style: solid; border-width: thin;border-radius: 12px" type="text" id="offerid" name="offerid"><br>#}
+{#        <label for="quantity">Quantity :</label><br>#}
+{#  <input style="margin-left:20px; border-style: solid; border-width: thin;border-radius: 12px" type="text" id="quantity" name="quantity"><br>#}
+{#        <label for="comment">Comment</label><br>#}
+{#  <input style="margin-left:20px; border-style: solid; border-width: thin;border-radius: 12px" type="text" id="comment" name="comment"><br>#}
+{##}
+{##}
+{#  <input type="submit" value="Submit">#}
+{#</form></div>#}
+{##}
+{#    <div>#}
+{#   <form action="/action_page.php">#}
+{#  <label for="placeorderid">Place Order Id :</label><br>#}
+{#  <input style="border-style: solid; border-width: thin;border-radius: 12px" type="text" id="placeorderid" name="placeorderid"><br>#}
+{#  <label for="typeofpackage">Type of Package :</label><br>#}
+{#  <input style="border-style: solid; border-width: thin;border-radius: 12px" type="text" id="typeofpackage" name="typeofpackage"><br>#}
+{#       <label for="itempackage">Item Price :</label><br>#}
+{#  <input style="border-style: solid; border-width: thin;border-radius: 12px" type="text" id="itempackage" name="itempackage"><br>#}
+{# <label for="itempackage"></label><br><br>#}
+{#  <input type="submit" value="Submit">#}
+{#</form>#}
+{#    </div>#}
+{##}
+{#        </div>#}
+{##}
+{#</div>#}
+
+    <div  id="main" class="ss" style="margin-Left: 280px">
+{#    {% if text == True %}#}
+<div style="margin-top: -15px" class="openbtn">
+{#    <button onclick="myFunction()">Try it</button>#}
+  <button onclick="document.getElementsByClassName('sidebar')[0].classList.toggle('collapsed'); openNav()" id="togglebutton" class="openbtn">☰ </button>
+{#    <button onclick="document.getElementsByClassName('sidebar')[0].classList.toggle('collapsed'); openNav()" id="togglebutton" class="openbtn">☰</button>#}
+{#   <button class="openbtn"> <i class="far fa-expand" aria-hidden="true"></i></button>#}
+    <button class="openbtn"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></button>
+    <button class="openbtn"><i class="fa fa-window-maximize"></i></button>
+    <img id="myBtn" style="float:right" src="{% static 'myapp/male.png' %}" width=50px alt="My image">
+ <button style="float:right" class="openbtn"><i class="fa fa-bell-o" aria-hidden="true"></i></button>
+ <button style="float:right" class="openbtn"> <i class="fa fa-search" aria-hidden="true"></i></button>
+
+   </div>
+
+    <div style='overflow:hidden'>
+    <div style="float:left; color: #3D4072; font-size: 25px; margin-left: 40px; margin-top: 20px">Add Partner</div>
+    <div style="float:left;  color:#3D4072;font-size: 15px; margin-left: 20px; margin-top: 30px">Partner - Add Partner</div>
+</div>
+
+        <div style="clear:both; text-align:center; border-radius: 12px; padding: 20px; margin-top: 30px; background-color: #ffffff; height:100%; margin-Left: 20px" class="bg-img">
+<p style="float:left;  margin-Top:10px; font-weight:bold" id="merchant">Add Partner Details</p><br><br>
+            <div style="clear:both;">
+
+
+<form id='myForm' name = "myForms" method="POST">
+     {% csrf_token %}
+
+    <div class="form-group row">
+{#        <div class="d-block d-sm-none d-md-none d-lg-none d-xl-none" data-size="xs">#}
+{#             <div class="d-none d-sm-block d-md-none d-lg-none d-xl-none" data-size="sm">#}
+{#                  <div class="d-none d-sm-none d-md-block d-lg-none d-xl-none" data-size="md">#}
+      <div id="myDIV" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex1">Name: </label>
+        <input  style = "border-radius: 10px" class="form-control" id="ex1" type="text" name ="name"  value="{{ partners.name }}" autofocus="" onfocus="this.value = this.value;">
+      </div>
+      <div id="myDIV1" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex2">Business Name: </label>
+        <input style = "border-radius: 10px" class="form-control" id="ex2" type="text" name ="buisnessname" value="{{ partners.buisnessname }}">
+      </div>
+
+    </div>
+
+
+    <div class="form-group row">
+      <div id="myDIV2" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex1">Contact Person 1 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="ex1" type="text" name ="contactperson1" value="{{ partners.contactperson1 }}">
+      </div>
+      <div id="myDIV3" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex2">Contact Details 1 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="contactdetails1" type="text" name ="contactdetails1" value="{{ partners.contactdetails1 }}">
+      </div>
+<div id="myDIV4" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex2">Contact Email 1 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="ex2" type="text" name="contactemail1" value="{{ partners.contactemail1 }}">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div id="myDIV5" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex1">Contact Person 2 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="ex1" type="text" name="contactperson2" value="{{ partners.contactperson2 }}">
+      </div>
+      <div id="myDIV6" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex2">Contact Details 2 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="contactdetails2"   type="text" name="contactdetails2" value="{{ partners.contactdetails2 }}" onfocus="this.value = this.value;" >
+      </div>
+<div id="myDIV7" class="col-lg-4 col-md-4 col-sm-4">
+        <label for="ex2">Contact Email 2 :</label>
+        <input style = "border-radius: 10px" class="form-control" id="ex2" type="text" name="contactemail2" value="{{ partners.contactemail2 }}" >
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div id="myDIV8" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex1">Mailing Address : </label>
+        <input style = "border-radius: 10px" class="form-control" id="ex1" type="text" name="mailingaddress" value="{{ partners.mailingaddress }}">
+      </div>
+      <div id="myDIV9" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex2">Zip Code : </label>
+        <input style = "border-radius: 10px" class="form-control" id="ex2" type="text" name="zipcode1" value="{{ partners.zipcode1 }}">
+      </div>
+
+    </div>
+
+
+    <div class="form-group row">
+      <div id="myDIV10" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex1">Billing Address : </label>
+        <input style = "border-radius: 10px" class="form-control" id="ex1" type="text" name="billingaddress" value="{{ partners.billingaddress }}">
+      </div>
+      <div id="myDIV11" class="col-lg-6 col-md-6 col-sm-6">
+        <label for="ex2">Zip Code : </label>
+        <input style = "border-radius: 10px" class="form-control" id="ex2" type="text" name="zipcode2" value="{{ partners.zipcode2 }}">
+      </div>
+
+    </div>
+
+<div class="form-group row">
+    <div >
+{#        <Input type = "submit" id="insert" value="Save"/>#}
+
+        <button class="btn info" type="button" id="insert"><i class="fa fa-save"></i> Save</button>
+    </div>
+
+
+      <div>
+       <button class="btn info" type = "submit" id="update"><i class="fa fa-edit"></i> Update</button>
+{#        <Input type = "submit" id="update" value="update"/>#}
+
+              <td>
+
+{#              {% if messages == 99 %}#}
+{#              <div class="slot" id="slot1"></div>#}
+{#              {% else %}#}
+{#              <div class="slot" id="slot1"></div>#}
+{#              Data is empty#}
+{#              {% endif%}#}
+               {% if messages %}
+               {% for mess in messages %}
+
+                    {% if  data  == 99 %}
+                   <div class="slot" id="slot1">Draw1</div>
+                    {% else %}
+                   <div class="slot2" id="slot1">Draw1</div>
+                    {% endif %}
+{#               <b onload="someFunction()" style="'color: green;"> {{mess}}</b>#}
+
+{#                   <div id="somid">Some content</div>#}
+
+               {% endfor %}
+
+               {% endif %}
+
+           </td>
+    </div>
+</div>
+    </form>
+</div>
+   </div>
+</div>
+</div>
+
+{#    <script type="text/javascript">#}
+{# oQuickReply.swap('somid');#}
+{#</script>#}
+
+<script>
+
+
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+ var element = document.getElementById("main");
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  {#dropdownContent.style.display = "block";#}
+
+    if ( element.style.marginLeft==="280px" ) {
+     dropdownContent.style.display = "block";
+ }
+ else
+     {
+      dropdownContent.style.display = "none";
+     }
+  }
+  });
+}
+ {##}
+
+ if( document.myForms.name.value == "" )
+ {
+           document.getElementById('insert').style.visibility = 'visible';
+           document.getElementById('update').style.visibility = 'hidden';
+           {#document.getElementById('update').style.marginLeft = 'hidden';#}
+       }
+else
+    {
+          document.getElementById('insert').style.visibility = 'hidden';
+          document.getElementById('update').style.visibility = 'visible';
+          document.getElementById('update').style.marginLeft = '-80px';
+       }
+
+   $('#insert').click(function(){
+    var form = document.getElementById("myForm")
+if(validate() === 2) {
+    form.action = "/addpartners/" + validate();
+    form.submit();
+
+
+}
+{#else#}
+{#    form.action = "/addpartners/" + 44;#}
+
+
+
+});
+
+
+    console.log({{ partners.id }});
+{##}
+$('#update').click(function(){
+    var form = document.getElementById("myForm")
+    form.action = "/updatepartner/{{ partners.id }}/"+  validate();
+
+    form.submit();
+});
+
+$(document).ready(function(){
+  $("#myBtn").click(function(){
+    $("#myModal").modal();
+  });
+});
+
+
+$(document).ready( function() {
+    $('div.slot').each(function(i, d) {
+    {#alert("HHh");#}
+
+     $('.hover_bkgr_fricc').show();
+
+  $('.hover_bkgr_fricc').click(function(){
+        $('.hover_bkgr_fricc').hide();
+    });
+    $('.popupCloseButton').click(function(){
+        $('.hover_bkgr_fricc').hide();
+    });
+        {#console.log('slot found: ' + d.id);#}
+        {#draw.call($(this));#}
+    });
+
+      $('div.slot2').each(function(i, d) {
+    {#alert("HHh");#}
+
+     $('.hover_bkgr_fricc1').show();
+
+  $('.hover_bkgr_fricc1').click(function(){
+        $('.hover_bkgr_fricc1').hide();
+    });
+    $('.popupCloseButton').click(function(){
+        $('.hover_bkgr_fricc1').hide();
+    });
+        {#console.log('slot found: ' + d.id);#}
+        {#draw.call($(this));#}
+    });
+});
+
+{#var telInput = $("#contactdetails1"),#}
+{#  errorMsg = $("#error-msg"),#}
+{#  validMsg = $("#valid-msg");#}
+{##}
+{#// initialise plugin#}
+{#telInput.intlTelInput({#}
+{##}
+{#  allowExtensions: true,#}
+{#  formatOnDisplay: true,#}
+{#  autoFormat: true,#}
+{#  autoHideDialCode: true,#}
+{#  autoPlaceholder: true,#}
+{#  defaultCountry: "auto",#}
+{#  ipinfoToken: "yolo",#}
+{##}
+{#  nationalMode: false,#}
+{#  numberType: "MOBILE",#}
+{#  //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],#}
+{#  preferredCountries: ['sa', 'ae', 'qa','om','bh','kw','ma'],#}
+{#  preventInvalidNumbers: true,#}
+{#  separateDialCode: true,#}
+{#  initialCountry: "auto",#}
+{#  geoIpLookup: function(callback) {#}
+{#  $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {#}
+{#    var countryCode = (resp && resp.country) ? resp.country : "";#}
+{#    callback(countryCode);#}
+{#  });#}
+{#},#}
+{#   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"#}
+{#});#}
+{##}
+{#var reset = function() {#}
+{#  telInput.removeClass("error");#}
+{#  errorMsg.addClass("hide");#}
+{#  validMsg.addClass("hide");#}
+{#};#}
+{##}
+{#// on blur: validate#}
+{#telInput.blur(function() {#}
+{#  reset();#}
+{#  if ($.trim(telInput.val())) {#}
+{#    if (telInput.intlTelInput("isValidNumber")) {#}
+{#      validMsg.removeClass("hide");#}
+{#    } else {#}
+{#      telInput.addClass("error");#}
+{#      errorMsg.removeClass("hide");#}
+{#    }#}
+{#  }#}
+{#});#}
+{##}
+{#// on keyup / change flag: reset#}
+{#telInput.on("keyup change", reset);#}
+{##}
+{##}
+{#    var telInput2 = $("#contactdetails2"),#}
+{#  errorMsg2 = $("#error-msg"),#}
+{#  validMsg2 = $("#valid-msg");#}
+{##}
+{#// initialise plugin#}
+{#telInput2.intlTelInput({#}
+{##}
+{#  allowExtensions: true,#}
+{#  formatOnDisplay: true,#}
+{#  autoFormat: true,#}
+{#  autoHideDialCode: true,#}
+{#  autoPlaceholder: true,#}
+{#  defaultCountry: "auto",#}
+{#  ipinfoToken: "yolo",#}
+{##}
+{#  nationalMode: false,#}
+{#  numberType: "MOBILE",#}
+{#  //onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],#}
+{#  preferredCountries: ['sa', 'ae', 'qa','om','bh','kw','ma'],#}
+{#  preventInvalidNumbers: true,#}
+{#  separateDialCode: true,#}
+{#  initialCountry: "auto",#}
+{#  geoIpLookup: function(callback) {#}
+{#  $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {#}
+{#    var countryCode = (resp && resp.country) ? resp.country : "";#}
+{#    callback(countryCode);#}
+{#  });#}
+{#},#}
+{#   utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"#}
+{#});#}
+{##}
+{#var reset = function() {#}
+{#  telInput2.removeClass("error");#}
+{#  errorMsg2.addClass("hide");#}
+{#  validMsg2.addClass("hide");#}
+{#};#}
+{##}
+{#// on blur: validate#}
+{#telInput2.blur(function() {#}
+{#  reset();#}
+{#  if ($.trim(telInput2.val())) {#}
+{#    if (telInput2.intlTelInput("isValidNumber")) {#}
+{#      validMsg2.removeClass("hide");#}
+{#    } else {#}
+{#      telInput2.addClass("error");#}
+{#      errorMsg2.removeClass("hide");#}
+{#    }#}
+{#  }#}
+{#});#}
+{##}
+{#// on keyup / change flag: reset#}
+{#telInput2.on("keyup change", reset);#}
+
+
+{#$('.contactdetails1').html(telInput.val());#}
+
+  {#document.getElementById('contactdetails1').innerHTML = telInput.val()+999;#}
+
+function myFunction() {
+  alert("Hello! I am an alert box!");
+}
+function validate() {
+
+         if( document.myForms.name.value == "" ) {
+            alert( "Please provide your name!" );
+            document.myForms.name.focus() ;
+            return 1;
+         }
+          var letters = /^[A-Za-z ]+$/;
+    if(!document.myForms.name.value.match(letters))
+    {
+      alert("Invalid name");
+     return 1;
+    }
+if( document.myForms.buisnessname.value == "" ) {
+            alert( "Please provide buisnessname!" );
+            document.myForms.buisnessname.focus() ;
+            return 1;
+         }
+if( document.myForms.contactperson1.value == "" ) {
+            alert( "Please provide contactperson1" );
+            document.myForms.contactperson1.focus() ;
+            return 1;
+         }
+if( document.myForms.contactdetails1.value == "" ) {
+            alert( "Please provide contactdetails1" );
+            document.myForms.contactdetails1.focus() ;
+            return 1;
+         }
+var val = document.myForms.contactdetails1.value;
+if (/^\d{10}$/.test(val)) {
+    // value is ok, use it
+} else {
+    alert("Invalid number; must be ten digits")
+    document.myForms.contactdetails1.focus()
+    return 1;
+}
+
+if( document.myForms.contactperson2.value == "" ) {
+            alert( "Please provide contactperson2" );
+            document.myForms.contactperson2.focus() ;
+            return 1;
+         }
+if( document.myForms.contactdetails2.value == "" ) {
+            alert( "Please provide contactdetails2" );
+            document.myForms.contactdetails2.focus() ;
+            return 1;
+         }
+
+var val1 = document.myForms.contactdetails2.value;
+if (/^\d{10}$/.test(val1)) {
+    // value is ok, use it
+} else {
+    alert("Invalid number; must be ten digits")
+    document.myForms.contactdetails2.focus()
+    return 1;
+}
+
+if( document.myForms.contactemail1.value == "" ) {
+            alert( "Please provide contactemail1" );
+            document.myForms.contactemail1.focus() ;
+            return 1;
+         }
+
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9- ]+(?:\.[a-zA-Z0-9- ]+)*$/;
+
+ {#alert(document.myForms.contactemail1.value);#}
+
+if (!document.myForms.contactemail1.value.match(validRegex))
+{
+    alert("Invalid email address!");
+    document.myForms.contactemail1.focus();
+    return 1;
+
+  }
+
+
+  {#  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(document.myForms.contactemail1.value))#}
+  {#{#}
+    {#return (true)#}
+
+  {#  else {#}
+  {#      alert("You have entered an invalid email address!")#}
+  {#      return false;#}
+  {#  }#}
+
+if( document.myForms.contactemail2.value == "" ) {
+            alert( "Please provide contactemail2" );
+            document.myForms.contactemail2.focus() ;
+            return 1;
+         }
+
+
+if (!document.myForms.contactemail2.value.match(validRegex)) {
+    alert("Invalid email address!");
+    document.myForms.contactemail2.focus();
+    return 1;
+
+  }
+
+         return(2);
+      }
+
+function openNav() {
+  {#document.getElementById("mySidebar").style.width = "250px";#}
+  {#document.getElementById("main").style.marginLeft = "250px";#}
+  {#text = True;#}
+
+    var element = document.getElementById("main");
+
+
+{#var element2 =document.getElementsByClassName("ab");#}
+     var element1 = document.getElementById("myDIV");
+  var tachometer = document.getElementById("tachometer");
+    var comment = document.getElementById("comment");
+    var envelope = document.getElementById("envelope");
+    var sitemap = document.getElementById("sitemap");
+    var table = document.getElementById("table");
+    var creditcard = document.getElementById("creditcard");
+    var hdd = document.getElementById("hdd");
+    var wpforms = document.getElementById("wpforms");
+    var myapp = document.getElementById("myapp");
+     var merchant = document.getElementById("merchant");
+
+      var comment1 = document.getElementById("comment1");
+
+
+
+  if ( element.style.marginLeft==="280px" ) {
+    element.style.marginLeft="50px";
+
+          comment1.style.marginLeft = "0px";
+        comment1.style.marginRight = "0px";
+
+        merchant.style.marginLeft="120px";
+
+        tachometer.style.marginLeft = "-15px";
+        comment.style.marginLeft = "-15px";
+        envelope.style.marginLeft = "-15px";
+        sitemap.style.marginLeft = "-15px";
+        table.style.marginLeft = "-15px";
+        creditcard.style.marginLeft = "-15px";
+        hdd.style.marginLeft = "-15px";
+        wpforms.style.marginLeft = "-15px";
+        myapp.style.width = "40px";
+        myapp.style.height = "80px";
+
+
+} else {
+    element.style.marginLeft="280px";
+
+      comment1.style.marginLeft = "10px";
+        comment1.style.marginRight = "10px";
+
+         merchant.style.marginLeft="5px";
+
+         tachometer.style.marginLeft = "0px";
+        comment.style.marginLeft = "0px";
+        envelope.style.marginLeft = "0px";
+        sitemap.style.marginLeft = "0px";
+        table.style.marginLeft = "0px";
+        creditcard.style.marginLeft = "0px";
+        hdd.style.marginLeft = "0px";
+        wpforms.style.marginLeft = "0px";
+        myapp.style.width = "120px";
+
+
+}
+
+
+
+{#    if (element1.className === "col-xs-5") {#}
+{#        comment1.style.marginLeft = "0px";#}
+{#        comment1.style.marginRight = "0px";#}
+{##}
+{#        merchant.style.marginLeft="120px";#}
+{#        element1.className = "col-xs-6"#}
+{#        tachometer.style.marginLeft = "-15px";#}
+{#        comment.style.marginLeft = "-15px";#}
+{#        envelope.style.marginLeft = "-15px";#}
+{#        sitemap.style.marginLeft = "-15px";#}
+{#        table.style.marginLeft = "-15px";#}
+{#        creditcard.style.marginLeft = "-15px";#}
+{#        hdd.style.marginLeft = "-15px";#}
+{#        wpforms.style.marginLeft = "-15px";#}
+{#        myapp.style.width = "40px";#}
+{#        myapp.style.height = "80px";#}
+        {#element1.style.marginLeft="-30px";#}
+
+{#    else {#}
+{#        comment1.style.marginLeft = "10px";#}
+{#        comment1.style.marginRight = "10px";#}
+{##}
+{#         merchant.style.marginLeft="5px";#}
+{#        element1.className = "col-xs-5"#}
+{#         tachometer.style.marginLeft = "0px";#}
+{#        comment.style.marginLeft = "0px";#}
+{#        envelope.style.marginLeft = "0px";#}
+{#        sitemap.style.marginLeft = "0px";#}
+{#        table.style.marginLeft = "0px";#}
+{#        creditcard.style.marginLeft = "0px";#}
+{#        hdd.style.marginLeft = "0px";#}
+{#        wpforms.style.marginLeft = "0px";#}
+{#        myapp.style.width = "120px";#}
+{##}
+        {#element1.style.marginLeft="0px";#}
+{#    }#}
+
+
+     var element2 = document.getElementById("myDIV1");
+
+
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  text = False;
+}
+
+$(document).ready(function(){
+
+ $("#togglebutton").click(function(){
+     {#$('#gg').toggle(closeNav, openNav);#}
+   {#$("#myDIV").animate({width: "10%"});#}
+   {#$( "#main" ).toggleClass( "ss", 1000 );#}
+{#$(".sidebar").toggle("slide");#}
+{#     var toggleWidth = $("#myDIV").width() === 150 ? "100px" : "50px";#}
+{#        $('#myDIV').animate({ width: toggleWidth });#}
+
+     var drp  = document.getElementsByClassName("dropdown-btn");
+
+var i;
+
+for (i = 0; i < drp.length; i++) {
+   var drps = drp[i].nextElementSibling;
+
+    {#let current = document.querySelector('.dropdown-btn');#}
+    {#var dropdownContent = current.nextElementSibling;#}
+
+    console.log(drps);
+if (drps.style.display === "block") {
+    drps.style.display = "none";
+}}
+
+ });
+
+});
+
+
+
+   $('#togglebutton').click(function() {
+   if ($(window).width() > 500) { //your chosen mobile res
+     $('.text').toggle(300);
+
+   } else {
+
+   }
+});
+</script>
+
+</body>
+</html>

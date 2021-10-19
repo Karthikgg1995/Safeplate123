@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+{#    {% load staticfiles %}#}
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>#}
+</head>
+<body>
+<center>
+
+    <h1>
+      How to edit emp details with postgresql
+    </h1>
+    <h3>
+        Django web
+    </h3>
+    <br/>
+    <form method="POST" action="/update/{{employee.id}}">
+        {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td>Employee id</td>
+            <td>
+               <input type="text" name="id" value="{{ employee.id }}" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Employee Name
+            </td>
+            <td>
+               <input type="text" name="name" value="{{ employee.name }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Address
+            </td>
+            <td>
+               <input type="text" name="address" value="{{ employee.address }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Salary
+            </td>
+            <td>
+               <input type="text" name="salary" value="{{ employee.salary }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Status
+            </td>
+            <td>
+               <input type="text" name="status" value="{{ employee.status }}"/>
+            </td>
+
+        </tr>
+
+
+<tr>
+               <td>
+                   <Input type = "submit" value="Update Record"/>
+               <td>
+               {% if messages %}
+               {% for mess in messages %}
+               <b style="'color: green;"> {{mess}}</b>
+               {% endfor %}
+
+               {% endif %}
+
+           </td>
+               </td>
+           </tr>
+
+    </table>
+        </form>
+</center>
+
+</body>
+</html>

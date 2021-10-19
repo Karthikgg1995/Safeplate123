@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{#<head>#}
+{#    #}
+{#    #}
+{#    <meta charset="UTF-8">#}
+{#    <title>Index</title>#}
+{##}
+{#{% load static %}#}
+{#    <link href="{% static 'css/style.css' %}" rel="stylesheet">#}
+{#</head>#}
+<head>
+
+    <title>Safe Plate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	{% load static %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+
+
+
+    </style>
+</head>
+<body style="background-color: #232f3e;">
+<div style="text-align:center; background-color: #232f3e;" class="bg-img">
+  <form  class="container" action="Login" method="GET">
+    <img src="{% static 'myapp/kk.png' %} " width=120px alt="My image">
+<div class="form-group">
+    <input type="text" placeholder="Username" name="email" size="30" height="35" required>
+</div>
+<div class="form-group">
+    <input type="password" placeholder="Password" name="pass" size="30" height="35" required>
+</div>
+      <div id="textbox">
+  <p class="alignleft" style="color:#0066ff; margin-left: 10px">Remember Me</p>
+  <p class="alignright" style="color:#0066ff; margin-Right: 10px">Forgot Password</p>
+</div>
+{#       <div class="form-group d-md-flex">#}
+{#	            	<div style="text-align:left; margin-left: 30px">#}
+{#	            		<label class="checkbox-wrap checkbox-primary">Remember Me#}
+{#									  <input type="checkbox" checked="">#}
+{#									  <span class="checkmark"></span>#}
+{#									</label>#}
+{#                        <a href="#">Remember Me</a>#}
+{#								</div>#}
+{#								<div style="float:right;">#}
+{##}
+{#									<a href="#">Forgot Password</a>#}
+{#								</div>#}
+{#	            </div>#}
+
+
+{#</p>#}
+    <button onclick="location.href = '/main'" type="submit" class="btn">Login</button><br><br>
+
+
+  </form>
+</div>
+</body>
+</html>

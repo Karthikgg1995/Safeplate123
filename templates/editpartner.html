@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+{#    {% load staticfiles %}#}
+{#    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>#}
+</head>
+<body>
+<center>
+
+    <h3>
+        Update partner
+    </h3>
+    <br/>
+    <form method="POST" action="/updatepartner/{{partners.id}}">
+        {% csrf_token %}
+    <table border="1">
+    <tr>
+            <td>Id</td>
+            <td>
+               <input type="text" name="id" value="{{ partners.id }}" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+               <input type="text" name="name" value="{{ partners.name }}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              Buisnessname
+            </td>
+            <td>
+               <input type="text" name="buisnessname" value="{{ partners.buisnessname }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Contact person1
+            </td>
+            <td>
+               <input type="text" name="contactperson1" value="{{ partners.contactperson1 }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Contact details1
+            </td>
+            <td>
+               <input type="text" name="contactdetails1" value="{{ partners.contactdetails1 }}"/>
+            </td>
+
+        </tr>
+     <tr>
+            <td>
+                Contact email1
+            </td>
+            <td>
+               <input type="text" name="contactemail1" value="{{ partners.contactemail1 }}"/>
+            </td>
+
+        </tr>
+  <tr>
+            <td>
+                Contact person2
+            </td>
+            <td>
+               <input type="text" name="contactperson2" value="{{ partners.contactperson2 }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Contact details2
+            </td>
+            <td>
+               <input type="text" name="contactdetails2" value="{{ partners.contactdetails2 }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Contact email2
+            </td>
+            <td>
+               <input type="text" name="contactemail2" value="{{ partners.contactemail2 }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Mailing Address
+            </td>
+            <td>
+               <input type="text" name="mailingaddress" value="{{ partners.mailingaddress }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Zip code1
+            </td>
+            <td>
+               <input type="text" name="zipcode1" value="{{ partners.zipcode1 }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+               Billing Address
+            </td>
+            <td>
+               <input type="text" name="billingaddress" value="{{ partners.billingaddress }}"/>
+            </td>
+
+        </tr>
+      <tr>
+            <td>
+                Zip code2
+            </td>
+            <td>
+               <input type="text" name="zipcode2" value="{{ partners.zipcode2 }}"/>
+            </td>
+
+        </tr>
+
+
+<tr>
+               <td>
+                   <Input type = "submit" value="Update Record"/>
+               <td>
+               {% if messages %}
+               {% for mess in messages %}
+               <b style="'color: green;"> {{mess}}</b>
+               {% endfor %}
+
+               {% endif %}
+
+           </td>
+               </td>
+           </tr>
+
+    </table>
+        </form>
+</center>
+
+</body>
+</html>

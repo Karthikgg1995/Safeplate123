@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+
+       ​.wrapper { width: 50% }
+.menu {
+      background: #ffffff;
+      float: left;
+      display: block;
+
+}
+
+.icon { max-width: 1em }
+
+
+
+.text {
+      display: inline;
+      margin: 0;
+}
+
+.content { display: block; }
+
+button { margin: 1em; }
+
+@media only screen and (max-width: 500px) {
+  .text {
+      display: none;
+  }
+}
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ffffff;
+            {#overflow-x: hidden;#}
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .text {
+      display: inline;
+      margin: 0;
+}
+@media only screen and (max-width: 500px) {
+  .text {
+      display: none;
+  }
+}
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+        .openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+    text-align: left;
+}
+    </style>
+</head>
+<body>
+
+{#<div class="wrapper">#}
+{#  <div class="menu">#}
+{#    <ul>#}
+{#      <li>#}
+{#        <a href="#">#}
+{#            <i  class="fa fa-comment-o"></i>#}
+{#          <img class="icon" src="http://bit.do/iconUrl">#}
+{#          <p class="text">Text 1</p>#}
+{#        </a>#}
+{#      </li>#}
+{#      <li>#}
+{#        <a class="dropdown-btn" href="#">#}
+{#          <img class="icon" src="http://bit.do/iconUrl">#}
+{#          <p class="text">Text 2</p>#}
+{#            <div class="dropdown-container">#}
+{#    <a style="color:#000000; font-size:10px;" href="{% url 'addpartners' %}"> ...  Add Partners</a>#}
+{#    <a style="color:#000000; font-size:10px;" href="#"> ...  View Partners</a>#}
+{##}
+{#  </div>#}
+{#        </a>#}
+{#      </li>#}
+{#    </ul>#}
+{#  </div>#}
+{#  <div class="content">#}
+{#    <button id="togglebutton">&#9776;</button>#}
+{#  </div>#}
+{#</div>#}
+
+
+<div  id="mySidebar" class="sidebar">
+    <div class="menu">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> ×</a>
+    <div style="text-align:center; margin-top: 0px">
+    </div>
+    <a  href="#" style="color:#000000; font-size:12px; margin-top: 20px">
+        <i class="fa fa-tachometer text"></i>
+         <p class="text">DashBoard</p>
+    </a><br>
+
+  <a class="dropdown-btn text" href="#" style="color:#000000; font-size:12px;  ">
+      <i class="fa fa-comment-o"></i>
+      <i class="fa fa-caret-down"></i>
+      <p class="text">Partners</p></a>
+        <br>
+
+     <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="{% url 'addpartners' %}"> ...  Add Partners</a> <br>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  View Partners</a> <br>
+
+  </div>
+  <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-envelope-o"></i>  <i class="fa fa-caret-down"></i>   Safe Plate</a>
+    <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Order Forms</a>
+
+  </div>
+{#  <a href="#">Partners</a>#}
+{#    <a class="dropdown-btn">Dropdown#}
+{#    <i class="fa fa-caret-down"></i>#}
+{#  </a>#}
+{#  <div class="dropdown-container">#}
+{#    <a href="#">Link 1</a>#}
+{#    <a href="#">Link 2</a>#}
+{#    <a href="#">Link 3</a>#}
+{#  </div>#}
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-sitemap"></i> <i class="fa fa-caret-down"></i>   Merchant</a>
+     <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="{% url 'addmerchant' %}"> ...  Add Merchant</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  View Merchant</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Order Status</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Delivery Status</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-table"></i>  <i class="fa fa-caret-down"></i>  Manufacture</a>
+     <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="{% url 'addmanufacturer' %}"> ...  Add Manufacturer</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  View Manufacturer</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Inventory</a>
+  </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-credit-card"></i>  <i class="fa fa-caret-down"></i>  System Tickets</a>
+    <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-hdd-o"></i>  <i class="fa fa-caret-down"></i>  Complaints</a>
+    <div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Open</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Closed</a>
+ </div>
+    <a class="dropdown-btn" href="#" style="color:#000000; font-size:12px;"><i class="fa fa-wpforms"></i>  <i class="fa fa-caret-down"></i> APIs</a>
+<div class="dropdown-container">
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Partners</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Merchants</a>
+    <a style="color:#000000; font-size:10px;" href="#"> ...  Delivery</a>
+ </div>
+    </div>
+
+    <div class="content">
+    <button id="togglebutton">&#9776;</button>
+  </div>
+</div>
+
+<div  id="main">
+{#    {% if text == True %}#}
+
+  <button id="btn1" class="openbtn" style="margin-Left: 10px; width: 100%"  onclick="openNav(); ">☰ Open Sidebar</button>
+   <div style="text-align:center; border-radius: 12px; background-color: #ffffff; height:100%" class="bg-img">
+<div class="container">
+  <h2>Column Sizing</h2>
+  <p>The form below shows input elements with different widths using different .col-xs-* classes:</p>
+  <form>
+    <div class="form-group row">
+      <div id="myDIV" class="col-xs-6">
+        <label for="ex1">col-xs-2</label>
+        <input class="form-control" id="ex1" type="text">
+      </div>
+      <div class="col-xs-6">
+        <label for="ex2">col-xs-3</label>
+        <input class="form-control" id="ex2" type="text">
+      </div>
+      <div class="col-xs-4">
+        <label for="ex3">col-xs-4</label>
+        <input class="form-control" id="ex3" type="text">
+      </div>
+    </div>
+  </form>
+     <form>
+    <div class="form-group row">
+      <div class="col-xs-2">
+        <label for="ex1">col-xs-2</label>
+        <input class="form-control" id="ex1" type="text">
+      </div>
+      <div class="col-xs-3">
+        <label for="ex2">col-xs-3</label>
+        <input class="form-control" id="ex2" type="text">
+      </div>
+      <div class="col-xs-4">
+        <label for="ex3">col-xs-4</label>
+        <input class="form-control" id="ex3" type="text">
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+<script>
+
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+  dropdownContent.style.display = "none";
+  } else {
+  dropdownContent.style.display = "block";
+  }
+  });
+}
+
+function openNav() {
+
+  {#   document.getElementById("myDIV").style.animationDelay = "3s";#}
+  {#  document.getElementById("myDIV").className = "col-xs-2";#}
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  text = True;
+}
+
+function closeNav() {
+    {#document.getElementById("myDIV").className = "col-xs-6";#}
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  text = False;
+}
+
+
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $("#myDIV").animate({width: "10%"});
+  });
+
+});
+
+    $('#togglebutton').click(function() {
+    if ($(window).width() > 500) { //your chosen mobile res
+      $('.text').toggle(300);
+    } else {
+      $('.menu').animate({
+        width: 'toggle'
+      }, 350);
+    }
+});
+</script>
+    </div>
+</body>
+</html>
