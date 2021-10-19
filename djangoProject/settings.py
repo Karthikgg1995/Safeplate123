@@ -17,6 +17,7 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 #
 # 'NAME': 'djangodb',
 # 'USER': 'root',
@@ -183,6 +184,8 @@ STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR, 'static'),
 ]
+
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 #
 # STATICFILES_DIRS = [
 #     BASE_DIR / "static",
