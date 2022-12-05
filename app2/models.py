@@ -59,3 +59,11 @@ class manufacturer(models.Model):
 
 class Meta:
      db_table = 'manufacturer'
+
+
+class openticket(models.Model):
+         name = models.CharField(max_length=100)
+         email = models.CharField(max_length=100)
+
+class Meta:
+     db_table = 'openticket'

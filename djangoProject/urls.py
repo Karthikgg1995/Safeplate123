@@ -13,20 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, re_path, include
+from django.urls import re_path as urls
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 # from rest_framework.schemas import get_schema_view
 from rest_framework import permissions, serializers, viewsets, routers
-from rest_framework.renderers import OpenAPIRenderer
-from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 
 from . import views
-from rest_framework_swagger.views import get_swagger_view
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -137,6 +134,7 @@ path('updatemanufacturer/<int:id>/<int:ss4>',views.updatemanufacturer, name='upd
 path('updatemerchant/<int:id>/<int:ss3>',views.updatemerchant, name='updatemerchant'),
 path('updatepartner/<int:id>/<int:ss1>',views.updatepartner, name='updatepartner'),
 path('editpartners/<int:id>',views.editpartner, name='editpartner'),
+path('openticket',views.addopenticket, name='opentickets'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

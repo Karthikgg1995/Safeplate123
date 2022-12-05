@@ -5,7 +5,7 @@ from rest_framework import response, permissions
 from rest_framework.decorators import renderer_classes, api_view, permission_classes
 from rest_framework_swagger import renderers
 
-from app2.models import employee
+from app2.models import employee, openticket
 from app2.models import partners
 from app2.models import merchants
 from app2.models import manufacturer
@@ -17,8 +17,8 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework_swagger import renderers as swagger_renderer
 from rest_framework import renderers
 import coreapi
-from djangoProject.tables import employeeTable
-from table.views import FeedDataView
+
+
 
 @api_view()
 @permission_classes((permissions.AllowAny,))
@@ -342,6 +342,24 @@ def addmanufacturer(request, ss5):
         return render(request, 'addmanufacture.html' , context)
     else:
         return render(request, 'addmanufacture.html')
+
+def addopenticket(request):
+    if request.method == 'POST':
+        if request.POST.get('name') and request.POST.get('email'):
+            saverecord4 = openticket()
+            saverecord4.name = request.POST.get('name')
+            saverecord4.email = request.POST.get('email')
+            saverecord4.save()
+            messages.success(request, "Inserted successfully to database")
+
+            context = {
+                "data": 99,
+            }
+
+        return render(request, 'openticket.html',context)
+    else:
+        return render(request, 'openticket.html')
+
 
 def Insertemp(request):
     if request.method == 'POST':
