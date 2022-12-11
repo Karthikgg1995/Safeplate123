@@ -48,7 +48,6 @@ ALLOWED_HOSTS = ['*']
 # }
 
 TEMPLATE_LOADERS = (
-
 'django.template.loaders.eggs.Loader',
 
 )
