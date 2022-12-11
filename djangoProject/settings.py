@@ -37,7 +37,8 @@ SECRET_KEY = '2c23h29+-2dsq4yapuo7l+fp%r#gu3kfko=i(qh10uxdejb@lc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+# ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PAGINATION_CLASS':
